@@ -13,12 +13,12 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ URL('/property-owner/dashboard') }}">Gimanhal</a></li>
+                            <li class="breadcrumb-item"><a href="{{ URL('/property-owner/dashboard') }}">Stay Suite</a></li>
                             <li class="breadcrumb-item"><a href="{{ URL('property-owner/properties/all') }}">Properties</a></li>
-                            <li class="breadcrumb-item active">General Elements</li>
+                            <li class="breadcrumb-item active">Add New Room</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">General Elements</h4>
+                    <h4 class="page-title">Add New Room</h4>
                 </div>
             </div>
         </div>

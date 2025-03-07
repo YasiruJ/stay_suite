@@ -25,6 +25,12 @@
                 </li> --}}
 
                 <li>
+                    <a href="{{ URL('property-owner/properties/all') }}">
+                        <i class="mdi mdi-google-pages"></i>
+                        <span> Properties </span>
+                    </a>
+                </li>
+                {{-- <li>
                     <a href="javascript: void(0);">
                         <i class="mdi mdi-google-pages"></i>
                         <span> Properties </span>
@@ -34,7 +40,7 @@
                         <li><a href="{{ URL('property-owner/properties/add') }}">Add Property</a></li>
                         <li><a href="{{ URL('property-owner/properties/all') }}">All properties</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li>
                     <a href="{{ URL('property-owner/bookings/all') }}">

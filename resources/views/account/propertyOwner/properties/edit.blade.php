@@ -21,13 +21,13 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ URL('/property-owner/dashboard') }}">Gimanhal</a></li>
+                            <li class="breadcrumb-item"><a href="{{ URL('/property-owner/dashboard') }}">Stay Suite</a></li>
                             <li class="breadcrumb-item"><a href="{{ URL('property-owner/properties/all') }}">Properties</a></li>
 
                             <li class="breadcrumb-item active">Edit Property</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">General Elements</h4>
+                    <h4 class="page-title">Property Details</h4>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <form id="propertyEditForm">
                     <div class="card-box">
                         <div class="clearfix">
-                            <h4 class="header-title mb-4 float-left">Property information</h4>
+                            {{-- <h4 class="header-title mb-4 float-left">Property information</h4> --}}
                             {{-- <a href="{{ URL('property-owner/properties/delete/'.$properties->id) }}"><button type="button" class="btn btn-danger waves-effect waves-light float-right">
                                     <span class="btn-label"><i class="mdi mdi-close"></i>
                                     </span>Delete property</button></a> --}}
@@ -273,7 +273,7 @@
                                         <th>Active</th>
                                         <th>ID</th>
                                         <th>Room Type</th>
-                                        <th>Description</th>
+                                        <th>Room Count</th>
                                         <th>Status</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
@@ -285,7 +285,7 @@
                                         <td><input type="checkbox" data-id="{{ $room->id }}" class="js-switch" name="js-switch" {{ ($room->active) ? "checked" : "" }} /></td>
                                         <td>{{ $room->id }}</td>
                                         <td>{{ $room->title }}</td>
-                                        <td>{{ $room->description }}</td>
+                                        <td>{{ $room->room_count }}</td>
                                         <td>
                                             @if ($room->active)
                                             <span id="status_{{ $room->id }}" class="badge badge-success  even-larger-badge my-2" style="font-size: 1em;">Active</span>

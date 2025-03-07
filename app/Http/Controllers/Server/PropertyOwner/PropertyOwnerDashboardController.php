@@ -88,8 +88,11 @@ class PropertyOwnerDashboardController extends Controller
         $latest_bookings = Booking::whereIn('property_id', $property_ids)->paginate(10);
 
         return view('account.propertyOwner.dashboard', [
-            'all_bookings_count' => $all_bookings_count, 'active_bookings_count' => $active_bookings_count,
-            'credit_total' => $credit_total, 'debit_total' => $debit_total, 'latest_bookings' => $latest_bookings,
+            'all_bookings_count' => $all_bookings_count,
+            'active_bookings_count' => $active_bookings_count,
+            'credit_total' => $credit_total,
+            'debit_total' => $debit_total,
+            'latest_bookings' => $latest_bookings,
         ]);
     }
 
@@ -110,8 +113,11 @@ class PropertyOwnerDashboardController extends Controller
         $credit_card = CreditCard::all();
 
         return view('account.propertyOwner.properties.add', [
-            'cities' => $city, 'districts' => $district,
-            'property_facilities' => $property_facility, 'property_types' => $property_type, 'credit_cards' => $credit_card,
+            'cities' => $city,
+            'districts' => $district,
+            'property_facilities' => $property_facility,
+            'property_types' => $property_type,
+            'credit_cards' => $credit_card,
         ]);
     }
 
@@ -261,10 +267,16 @@ class PropertyOwnerDashboardController extends Controller
         //dd($property_has_credit_card);
 
         return view('account.propertyOwner.properties.edit', [
-            'properties' => $property, 'rooms' => $room, 'districts' => $district,
-            'cities' => $city, 'users' => $user, 'property_facilities' => $property_facility,
-            'property_has_facilities' => $property_has_facility, 'property_types' => $property_type,
-            'credit_cards' => $credit_card, 'property_has_credit_cards' => $property_has_credit_card,
+            'properties' => $property,
+            'rooms' => $room,
+            'districts' => $district,
+            'cities' => $city,
+            'users' => $user,
+            'property_facilities' => $property_facility,
+            'property_has_facilities' => $property_has_facility,
+            'property_types' => $property_type,
+            'credit_cards' => $credit_card,
+            'property_has_credit_cards' => $property_has_credit_card,
         ]);
     }
 
@@ -342,6 +354,7 @@ class PropertyOwnerDashboardController extends Controller
             array_push($existing_property_facility_id_list, "{$property_has_facility->property_facility_id}");
         }
 
+
         $to_add = array_diff($property_facilities, $existing_property_facility_id_list);
 
         foreach ($to_add as $a) {
@@ -364,7 +377,10 @@ class PropertyOwnerDashboardController extends Controller
             array_push($existing_property_credit_card_id_list, "{$property_has_credit_card->credit_card_id}");
         }
 
-        $to_add_cards = array_diff($credit_card_types, $existing_property_credit_card_id_list);
+
+        if ($credit_card_types) {
+            $to_add_cards = array_diff($credit_card_types, $existing_property_credit_card_id_list);
+        }
 
         // foreach ($to_add_cards as $to_add_card) {
         //     $property_has_credit_cards = new PropertyHasCreditCard;
@@ -373,11 +389,14 @@ class PropertyOwnerDashboardController extends Controller
         //     $property_has_credit_cards->save();
         // }
 
-        $to_delete_cards = array_diff($existing_property_credit_card_id_list, $credit_card_types);
-
-        foreach ($to_delete_cards as $to_delete_card) {
-            PropertyHasCreditCard::where('property_id', $property_id)->where('credit_card_id', $to_delete_card)->delete();
+        if ($credit_card_types) {
+            $to_delete_cards = array_diff($existing_property_credit_card_id_list, $credit_card_types);
+            foreach ($to_delete_cards as $to_delete_card) {
+                PropertyHasCreditCard::where('property_id', $property_id)->where('credit_card_id', $to_delete_card)->delete();
+            }
         }
+
+
 
         $res['success'] = true;
         $res['message'] = 'property Updated successfully!';
@@ -539,8 +558,17 @@ class PropertyOwnerDashboardController extends Controller
         $resvation_policies = ReservationPolicy::all();
 
         return view('account.propertyOwner.rooms.edit', [
-            'rooms' => $room, 'properties' => $property, 'room_types' => $room_type, 'facility' => $facility, 'meal_types' => $meal_types, 'resvation_policies' => $resvation_policies, 'sub_rooms' => $sub_room, 'units' => $unit, 'bed_types' => $bed_type,
-            'room_has_facilities' => $room_has_facility, 'room_images' => $room_image,
+            'rooms' => $room,
+            'properties' => $property,
+            'room_types' => $room_type,
+            'facility' => $facility,
+            'meal_types' => $meal_types,
+            'resvation_policies' => $resvation_policies,
+            'sub_rooms' => $sub_room,
+            'units' => $unit,
+            'bed_types' => $bed_type,
+            'room_has_facilities' => $room_has_facility,
+            'room_images' => $room_image,
         ]);
     }
 
@@ -669,8 +697,8 @@ class PropertyOwnerDashboardController extends Controller
         $room_type_id = $request->input('room_type_id');
         $room_title = $request->input('room_title');
         // $occupancy = $request->input('occupancy');
-        // $room_rate = $request->input('rate');
-        // $no_of_room = $request->input('no_of_room');
+        $minimum_rate = $request->input('minimum_rate');
+        $room_count = $request->input('room_count');
         $room_size = $request->input('room_size');
         $room_description = $request->input('description');
 
@@ -682,8 +710,8 @@ class PropertyOwnerDashboardController extends Controller
         $room->description = $room_description;
         $room->room_size = $room_size;
         // $room->occupancy = $occupancy;
-        // $room->no_of_rooms = $no_of_room;
-        // $room->rate = $room_rate;
+        $room->room_count = $room_count;
+        $room->minimum_rate = $minimum_rate;
         $room->property_id = $property_id;
         $room->save();
 
@@ -729,19 +757,24 @@ class PropertyOwnerDashboardController extends Controller
 
         $sub_room_id = $sub_room->id;
 
-        for ($i = 0; $i < count($meal_type_ids); $i++) {
-            DB::table('sub_room_has_meals_type')->insert([
-                'sub_room_id' => $sub_room_id,
-                'meal_type_id' => $meal_type_ids[$i],
-            ]);
+        if ($meal_type_ids) {
+            for ($i = 0; $i < count($meal_type_ids); $i++) {
+                DB::table('sub_room_has_meals_type')->insert([
+                    'sub_room_id' => $sub_room_id,
+                    'meal_type_id' => $meal_type_ids[$i],
+                ]);
+            }
         }
 
-        for ($i = 0; $i < count($resvation_policy_ids); $i++) {
-            DB::table('sub_room_has_reservation_policy')->insert([
-                'sub_room_id' => $sub_room_id,
-                'reservation_policy_id' => $resvation_policy_ids[$i],
-            ]);
+        if ($resvation_policy_ids) {
+            for ($i = 0; $i < count($resvation_policy_ids); $i++) {
+                DB::table('sub_room_has_reservation_policy')->insert([
+                    'sub_room_id' => $sub_room_id,
+                    'reservation_policy_id' => $resvation_policy_ids[$i],
+                ]);
+            }
         }
+
         $res['success'] = true;
         $res['message'] = 'Sub Room Added Successfully!';
 
@@ -984,7 +1017,9 @@ class PropertyOwnerDashboardController extends Controller
 
         return view('account.propertyOwner.payments.all', [
             'credit_total' => $credit_total,
-            'credit_bookings' => $credit_bookings, 'debit_total' => $debit_total, 'debit_bookings' => $debit_bookings,
+            'credit_bookings' => $credit_bookings,
+            'debit_total' => $debit_total,
+            'debit_bookings' => $debit_bookings,
         ]);
     }
 }

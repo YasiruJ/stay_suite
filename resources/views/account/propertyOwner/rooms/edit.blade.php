@@ -12,12 +12,13 @@
                     <div class="page-title-box">
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Gimanhal</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                <li class="breadcrumb-item active">General Elements</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Stay Suite</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Properties</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Rooms</a></li>
+                                <li class="breadcrumb-item active">Edit</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">General Elements</h4>
+                        <h4 class="page-title">Edit Room Details</h4>
                     </div>
                 </div>
             </div>
@@ -36,6 +37,20 @@
                                         <label for="">Room Title</label>
                                         <input type="text" class="form-control" id="" placeholder="Enter Title"
                                             name="room_title" value="{{ $rooms->title }}">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label for="">Minimum rate</label>
+                                        <input type="text" class="form-control" id="" placeholder="Enter Minimum Rate"
+                                            name="minimum_rate" value="{{ $rooms->minimum_rate }}">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label for="">Room Count</label>
+                                        <input type="text" class="form-control" id="" placeholder="Enter Room Count"
+                                            name="room_count" value="{{ $rooms->room_count }}">
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +141,7 @@
                     </form>
                 </div>
             </div><!-- end row -->
-            <div class="section">
+            {{-- <div class="section">
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
@@ -157,19 +172,12 @@
                                     <div class="row mt-3">
                                         <div class="col-12">
                                             <div class="card-box">
-                                                <h4 class="header-title">Default Example</h4>
-                                                <p class="sub-header">
-                                                    DataTables has most features enabled by default, so all you need to do
-                                                    to use it with your own tables is to call the construction function:
-                                                    <code>$().DataTable();</code>.
-                                                </p>
                                                 <table id="data_table_subRoom"
                                                     class="table table-bordered dt-responsive nowrap"
                                                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                     <thead>
                                                         <tr>
                                                             <th>Active</th>
-                                                            <th>ID</th>
                                                             <th>Sleep Type</th>
                                                             <th>Room Rate</th>
                                                             <td>Status</td>
@@ -183,8 +191,7 @@
                                                                 <td><input type="checkbox" data-id="{{ $sub_room->id }}"
                                                                         class="js-switch" name="js-switch"
                                                                         {{ $sub_room->active ? 'checked' : '' }} /></td>
-                                                                <td>{{ $sub_room->id }}</td>
-                                                                {{-- <td>{{ $sub_room->sleepType->type }}</td> --}}
+                                                                <td>{{ $sub_room->sleep_count }}</td>
                                                                 <td>{{ $sub_room->rate }}</td>
                                                                 <td>
                                                                     @if ($sub_room->active)
@@ -218,7 +225,7 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    </div> <!-- end row -->
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="unit" role="tabpane2"
                                     aria-labelledby="province-tab">
@@ -283,7 +290,7 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    </div> <!-- end row -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -343,7 +350,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div><!-- end col -->
     </div>
