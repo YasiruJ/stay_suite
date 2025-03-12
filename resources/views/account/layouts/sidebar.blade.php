@@ -107,6 +107,30 @@
                     </ul>
 
                 </li>
+
+                <li>
+                    <a href="javascript: void(1);">
+                        <i class="mdi mdi-google-pages"></i>
+                        <span> Booking </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ URL('admin/booking/add') }}">Add Booking</a></li>
+                        <li><a href="{{ URL('admin/booking/all') }}">All Booking</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(1);">
+                        <i class="mdi mdi-google-pages"></i>
+                        <span> Packages </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ URL('admin/packages') }}">Packages</a></li>
+                        <li><a href="{{ URL('admin/packages/package-subscriptions') }}">Package Subscriptions</a></li>
+                    </ul>
+                </li>
             </ul>
 
         </div>

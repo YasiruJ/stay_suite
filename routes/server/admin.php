@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Server\Admin\AdminDashboardController;
+use App\Http\Controllers\Server\Admin\PackageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminDashboardController::class, 'index']);
@@ -122,3 +123,7 @@ Route::post('referral_user/status/update/{id}', [AdminDashboardController::class
 Route::get('referral_user/edit/{id}', [AdminDashboardController::class, 'showEditReferralUserDetails']);
 Route::post('referral_user/edit/{id}/update', [AdminDashboardController::class, 'updateReferralUserDetails']);
 Route::get('referral_user/delete/{id}', [AdminDashboardController::class, 'deleteReferralUserDetails']);
+
+Route::prefix('packages')->group(function () {
+    Route::get('', [PackageController::class, 'viewAllPackages']);
+});
