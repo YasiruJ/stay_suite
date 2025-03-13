@@ -127,8 +127,9 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ URL('admin/packages/add') }}">Add New Package</a></li>
                         <li><a href="{{ URL('admin/packages') }}">Packages</a></li>
-                        <li><a href="{{ URL('admin/packages/package-subscriptions') }}">Package Subscriptions</a></li>
+                        <li><a href="{{ URL('admin/packages/subscriptions') }}">Package Subscriptions</a></li>
                     </ul>
                 </li>
             </ul>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Server\Admin\AdminDashboardController;
 use App\Http\Controllers\Server\Admin\PackageController;
+use App\Http\Controllers\Server\Admin\PackageSubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminDashboardController::class, 'index']);
@@ -126,4 +127,12 @@ Route::get('referral_user/delete/{id}', [AdminDashboardController::class, 'delet
 
 Route::prefix('packages')->group(function () {
     Route::get('', [PackageController::class, 'viewAllPackages']);
+    Route::get('/add', [PackageController::class, 'viewAddPackages']);
+    Route::post('/save', [PackageController::class, 'savePackage']);
+
+    Route::prefix('subscriptions')->group(function () {
+        Route::get('', [PackageSubscriptionController::class, 'viewAllSubscriptions']);
+        Route::get('/add', [PackageSubscriptionController::class, 'viewAddSubscription']);
+        Route::post('/save', [PackageSubscriptionController::class, 'saveSubscription']);
+    });
 });

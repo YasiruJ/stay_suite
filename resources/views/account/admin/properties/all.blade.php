@@ -12,12 +12,11 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Gimanhal</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                            <li class="breadcrumb-item active">Data Tables</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Stay Suite</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">All Properties</a></li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Data Tables</h4>
+                    <h4 class="page-title">All Properties</h4>
                 </div>
             </div>
         </div>
@@ -26,10 +25,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card-box">
-                    <h4 class="header-title">property Details</h4>
-                    <p class="sub-header">
-                        DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>.
-                    </p>
+                    {{-- <h4 class="header-title">All Properties</h4> --}}
 
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
@@ -50,9 +46,9 @@
                             <tr>
                                 <td><input type="checkbox" data-id="{{ $property->id }}" class="js-switch" name="js-switch" {{ ($property->admin_active) ? "checked" : "" }} /></td>
                                 <td>{{ $property->id }}</td>
-                                <td>{{ $property->users->username }}</td>
+                                <td>{{ $property->user->username }}</td>
                                 <td>{{ $property->name }}</td>
-                                <td>{{ $property->users->email }}</td>
+                                <td>{{ $property->user->email }}</td>
                                 <td>{{ $property->city->name }}</td>
                                 <td>{{ $property->description }}</td>
                                 <td>
